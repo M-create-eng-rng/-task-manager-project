@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Manager</title>
+</head>
+<body>
+  <h1>Tasks</h1>
+  <form id="taskForm">
+    <input id="taskInput" placeholder="New task" required />
+    <button>Add</button>
+  </form>
+  <ul id="taskList"></ul>
+
+  <script>
+    const form = document.getElementById('taskForm');
+    const input = document.getElementById('taskInput');
+    const list = document.getElementById('taskList');
+
+    async function loadTasks() {
+      const res = await fetch('/tasks');
+      const tasks = await res.json();
+      list.innerHTML = tasks.map(t => `<li>${t.title}</li>`).join('');
+    }
+
+    form.onsubmit = async e => {
+      e.preventDefault();
+      await fetch('/tasks', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ title: input.value })
+      });
+      input.value = '';
+      loadTasks();
+    };
+
+    loadTasks();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Web Page</title>
+  <link rel="stylesheet" href="styles.css"> <!-- This line links the CSS -->
+</head>
+<body>
+  <h1>Hello, world!</h1>
+</body>
+</html>
