@@ -1,0 +1,8 @@
+server.js   # Main server file
+models/     # Mongoose schema definition
+     Task.js  # Task model (description, complete)
+routes/     # Express routes
+     TaskRoutes.js  # Routes for task operations
+controllers/          # (optional) Controller functios (if scaling)
+config/               # (Optional) DB connection or configs
+package.json          # Project metadata and dependencies
